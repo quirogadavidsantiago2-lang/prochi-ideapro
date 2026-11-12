@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182633">
+  <meta name="description" content="Consulta a PROCHI sobre los servicios de consultoría, formación y tecnología de IDEAPRO.">
+  <title>PROCHI · Asistente virtual de IDEAPRO</title>
+  <link rel="icon" href="./ideapro-icon.png" type="image/png">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js" defer></script>
+  <script src="./chat.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="IDEAPRO y canales de contacto">
+      <a class="brand" href="https://ideapro.com.co/" target="_blank" rel="noopener noreferrer">
+        <img src="./ideapro-logo-dark.png" alt="IDEAPRO · Sitio oficial" width="154">
+      </a>
+
+      <nav class="sidebar-topics" aria-labelledby="topic-heading">
+        <h2 id="topic-heading">Áreas de consulta</h2>
+        <button class="topic" type="button" data-prompt="¿Qué servicios de consultoría ofrece IDEAPRO?">
+          <span class="topic-icon" aria-hidden="true">◎</span>
+          <span><strong>Consultoría</strong><small>Gestión pública y proyectos</small></span>
+        </button>
+        <button class="topic" type="button" data-prompt="¿Qué programas de formación y Escuelas de Gobierno ofrece IDEAPRO?">
+          <span class="topic-icon" aria-hidden="true">▤</span>
+          <span><strong>Formación</strong><small>Capacitación institucional</small></span>
+        </button>
+        <button class="topic" type="button" data-prompt="¿Qué soluciones tecnológicas y plataformas ofrece IDEAPRO?">
+          <span class="topic-icon" aria-hidden="true">◇</span>
+          <span><strong>Tecnología</strong><small>Herramientas para el sector público</small></span>
+        </button>
+      </nav>
+
+      <div class="sidebar-contact">
+        <h2>Atención directa</h2>
+        <div class="contact-links">
+          <a href="https://wa.me/573227259804" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+          <a href="mailto:ideapro.consultores@gmail.com">Correo electrónico <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="chat">
+      <header class="chat-header">
+        <div class="chat-identity">
+          <img class="header-avatar" src="./prochi-avatar.jpeg" width="40" height="40" alt="">
+          <div><span class="agent-name">PROCHI</span><span class="agent-role">Asistente virtual de IDEAPRO</span></div>
+        </div>
+        <div class="header-actions">
+          <p class="connection" id="connection" data-state="unconfigured" role="status">Sin conexión</p>
+          <button class="new-chat" id="newChat" type="button" aria-label="Nueva conversación" title="Nueva conversación">
+            <span aria-hidden="true">+</span><span class="new-chat-label">Nueva conversación</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="chat-scroll" id="chatScroll" aria-label="Conversación con PROCHI">
+        <div class="welcome" id="welcome">
+          <div class="welcome-avatar"><img src="./prochi-avatar.jpeg" width="88" height="88" alt=""></div>
+          <h1>¿En qué te puedo ayudar?</h1>
+          <p>Consulta sobre gestión pública, formación y tecnología, o cuéntame qué proyecto tienes en mente.</p>
+
+          <div class="prompt-grid" aria-label="Sugerencias para empezar">
+            <button type="button" data-prompt="¿Qué servicios de consultoría ofrece IDEAPRO?">
+              <span><strong>Servicios de consultoría</strong><small>Planes, políticas y proyectos públicos</small></span><span class="prompt-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" data-prompt="Necesito orientación sobre proyectos SGR y fuentes de financiación.">
+              <span><strong>Proyectos SGR</strong><small>Regalías y fuentes de financiación</small></span><span class="prompt-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" data-prompt="¿Qué programas de formación y Escuelas de Gobierno ofrece IDEAPRO?">
+              <span><strong>Programas de formación</strong><small>Escuelas de Gobierno y capacitación</small></span><span class="prompt-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" data-prompt="¿Qué soluciones tecnológicas y plataformas ofrece IDEAPRO?">
+              <span><strong>Soluciones tecnológicas</strong><small>Plataformas y herramientas para entidades</small></span><span class="prompt-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" data-prompt="Quiero hacer un diagnóstico de madurez empresarial para contratar con el Estado.">
+              <span><strong>Diagnóstico empresarial</strong><small>Prepárate para contratar con el Estado</small></span><span class="prompt-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" data-prompt="Quiero agendar una cita con IDEAPRO.">
+              <span><strong>Agendar una cita</strong><small>Coordina una reunión con IDEAPRO</small></span><span class="prompt-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="transcript" id="transcript" role="log" aria-label="Mensajes" aria-relevant="additions"></div>
+        <div class="pending" id="pending" role="status" hidden><span aria-hidden="true"></span> PROCHI está respondiendo…</div>
+      </section>
+
+      <footer class="chat-footer">
+        <div class="composer">
+          <p class="notice" id="notice" role="status" hidden></p>
+          <form class="composer-form" id="chatForm">
+            <textarea id="chatInput" aria-label="Tu mensaje para PROCHI" rows="1" maxlength="4000" placeholder="Escribe tu mensaje…" required></textarea>
+            <button class="dictation" type="button" id="dictation" aria-label="Dictar por voz" aria-pressed="false" title="Dictar por voz" hidden><span aria-hidden="true"></span></button>
+            <button class="send" id="send" type="submit" aria-label="Enviar mensaje" disabled><span class="send-label">Enviar</span><span aria-hidden="true">↑</span></button>
+          </form>
+          <div class="composer-footer">
+            <span class="keyboard-help">Enter para enviar · Shift + Enter para nueva línea</span>
+            <div class="mobile-contact">
+              <a href="https://ideapro.com.co/" target="_blank" rel="noopener noreferrer">IDEAPRO</a>
+              <a href="https://wa.me/573227259804" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <a href="mailto:ideapro.consultores@gmail.com">Correo</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript>Activa JavaScript para conversar con PROCHI.</noscript>
+</body>
+</html>
